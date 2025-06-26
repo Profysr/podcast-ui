@@ -7,7 +7,7 @@ import { auth } from "~/server/auth";
 import { db } from "~/server/db";
 
 const stripe = new Stripe(env.STRIPE_SECRET_KEY, {
-  apiVersion: "2025-05-28.basil",
+  apiVersion: "2025-04-30.basil",
 });
 
 export type PriceId = "small" | "medium" | "large";
@@ -32,6 +32,8 @@ export async function createCheckoutSession(priceId: PriceId) {
     throw new Error("User has no stripeCustomerId");
   }
 
+  // console.log(`Creating checkout session with priceId "${priceId}" and Stripe price "${PRICE_IDS[priceId]}"`);
+  
   const session = await stripe.checkout.sessions.create({
     line_items: [{ price: PRICE_IDS[priceId], quantity: 1 }],
     customer: user.stripeCustomerId,
@@ -43,5 +45,6 @@ export async function createCheckoutSession(priceId: PriceId) {
     throw new Error("Failed to create session URL");
   }
 
+  
   redirect(session.url);
 }
