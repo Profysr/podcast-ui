@@ -19,7 +19,7 @@ function ClipCard({ clip }: { clip: Clip }) {
         } else if (result.error) {
           console.error("Failed to get play url: " + result.error);
         }
-      } catch {
+      } catch (error) {
       } finally {
         setIsLoadingUrl(false);
       }

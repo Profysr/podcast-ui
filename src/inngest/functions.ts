@@ -128,7 +128,7 @@ export const processVideo = inngest.createFunction(
           });
         });
       }
-    } catch {
+    } catch (error: unknown) {
       await db.uploadedFile.update({
         where: {
           id: uploadedFileId,

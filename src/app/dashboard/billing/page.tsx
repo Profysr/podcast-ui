@@ -4,8 +4,7 @@ import type { VariantProps } from "class-variance-authority";
 import { ArrowLeftIcon, CheckIcon } from "lucide-react";
 import Link from "next/link";
 import { createCheckoutSession, type PriceId } from "~/actions/stripe";
-import { Button } from "~/components/ui/button";
-import type { buttonVariants } from "~/components/ui/button";
+import { Button, buttonVariants } from "~/components/ui/button";
 import {
   Card,
   CardContent,
